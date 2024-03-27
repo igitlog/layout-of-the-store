@@ -269,7 +269,40 @@ html {
     font-size: 18px;
   }
 }
-
+.header__dropdown-content {
+  display: none;
+  min-width: 150px;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 17px -6px gray;
+}
+.header__dropdown-content.show{
+  display: grid;
+}
+.header__dropdown-button {
+  cursor: pointer;
+}
+.header__dropdown-button.close {
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+  border-radius: 100px;
+  background:
+  linear-gradient(45deg, transparent calc(50% - 3px), #000000 calc(50% - 3px), #000000 calc(50% + 3px), transparent calc(50% + 3px)),
+  linear-gradient(-45deg, transparent calc(50% - 3px), #000000 calc(50% - 3px), #000000 calc(50% + 3px), transparent calc(50% + 3px));
+}
+.header__dropdown-menu {
+}
+.header__dropdown-menu-item {
+  list-style-type: none;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  cursor: pointer;
+}
 .button__menu {
   background-color: transparent;
   border: none;

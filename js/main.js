@@ -29,13 +29,52 @@ const initialize = () => {
   }
 };
 
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains('header__dropdown-button')) {
+    console.log('clickclickclickclick');
+    event.preventDefault();
+    let parentEl = event.target.closest('.dropdown');
+    let content = document.querySelector('.header__dropdown-content');
+    content.classList.toggle('show');
+    content.style.top = '40px';
+  }
+})
+function clickOutside(element, callback, ignoreElement) {
+  function handleClickOutside(event) {
+      if (!element.contains(event.target) && event.target !== ignoreElement) {
+          callback();
+      }
+  }
+
+  document.addEventListener('click', handleClickOutside);
+
+  return {
+      remove: function () {
+          document.removeEventListener('click', handleClickOutside);
+      }
+  };
+}
+
+// Пример использования:
+let dropdownContent = document.querySelector('.header__dropdown-content');
+let dropdownButton = document.querySelector('.header__dropdown-button');
+
+let clickOutsideHandler = clickOutside(dropdownContent, function () {
+  dropdownContent.classList.remove('show');
+}, dropdownButton);
+
+dropdownButton.addEventListener('click', function (event) {
+  event.stopPropagation(); // Остановить всплытие события, чтобы не срабатывал "clickoutside"
+  dropdownContent.classList.toggle('show');
+});
+
 // Функция для обработки события клика по документу
 const handleDocumentClick = (event) => {
   const targetElement = event.target;
 
   if (window.innerWidth > 768 && isMobile) {
     handleMobileMenu(targetElement);
-  }
+  }  
 
   handleSearchForm(targetElement);
   handleBurger(targetElement);
